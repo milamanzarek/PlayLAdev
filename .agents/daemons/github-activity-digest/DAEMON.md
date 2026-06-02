@@ -18,9 +18,11 @@ schedule: "0 15 * * 1-5"
 
 ## Repository configuration
 
-Use this repository-specific value:
+Use these repository-specific values:
 
-- Slack channel: `<slack_channel_name>`
+- Slack channel: `#playla-dev`
+- Duplicate-post detection strategy: before posting, read the most recent 50 messages in `#playla-dev` and skip posting when a message already contains `GitHub daily digest ({YYYY-MM-DD} UTC)` for the current UTC date.
+- Duplicate-post identity: one digest per UTC date per repository.
 
 ## Scope
 
@@ -62,7 +64,7 @@ No-op silently when there has been no repository activity since the previous sch
 
 Use `references/digest-template.md`.
 
-Format the Slack message with Slack `mrkdwn`, not standard Markdown. Use Slack link syntax (`<url|label>`), bold section labels with `*text*`, and plain hyphen bullets. Do not use Markdown headings, Markdown links (`[label](url)`), tables, nested lists, or code fences in the final Slack message.
+Format the Slack message with Slack `mrkdwn`, not standard Markdown. Use Slack angle-bracket link syntax (`url|label` inside angle brackets), bold section labels with `*text*`, and plain hyphen bullets. Do not use Markdown headings, Markdown links (`[label](url)`), tables, nested lists, or code fences in the final Slack message.
 
 Limits:
 

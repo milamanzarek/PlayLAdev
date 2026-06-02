@@ -37,18 +37,31 @@ Stop/no-op and comment with the blocking reason when the fix requires human judg
 
 ## Repair categories
 
-| Category                                                                                                | Posture                                                                                            |
-| ------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
-| Formatting, lint, typecheck, snapshots, generated fixtures, and lockfile drift                          | Fix and push.                                                                                      |
-| Failing unit/integration tests where PR intent or documented behavior makes the expected behavior clear | Fix implementation or update tests, then push.                                                     |
-| E2E failures with clear evidence from traces, logs, repo behavior, or changed stable selectors          | Fix app code or tests, then push.                                                                  |
-| CI/workflow syntax errors introduced by the PR                                                          | Fix and push.                                                                                      |
-| Simple generated/schema migrations needed by a clear schema/model change                                | Generate or add them and push when the devbox has the required tooling and permissions.            |
+| Category                                                                                                | Posture                                                                                             |
+| ------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| Formatting, lint, typecheck, snapshots, generated fixtures, and lockfile drift                         | Fix and push.                                                                                       |
+| Failing unit/integration tests where PR intent or documented behavior makes the expected behavior clear | Fix implementation or update tests, then push.                                                      |
+| E2E failures with clear evidence from traces, logs, repo behavior, or changed stable selectors         | Fix app code or tests, then push.                                                                   |
+| CI/workflow syntax errors introduced by the PR                                                          | Fix and push.                                                                                       |
+| Simple generated/schema migrations needed by a clear schema/model change                               | Generate or add them and push when the devbox has the required tooling and permissions.             |
 | Flaky checks with strong flake evidence                                                                 | Rerun once when no repo change is needed, or push the narrowest stabilizing fix when one is clear. |
-| Ambiguous product intent, conflicting requirements, or unclear PR direction                             | Stop/no-op; comment if human action is needed.                                                     |
-| Secrets, provider config, CI project settings, or external service failures outside the repo            | Stop/no-op; comment if human action is needed.                                                     |
-| Dependency replacement or vulnerability/security choices                                                | Stop/no-op; comment if human action is needed.                                                     |
-| Production data migrations, backfills, or data-shape decisions                                          | Stop/no-op; comment if human action is needed.                                                     |
+| Ambiguous product intent, conflicting requirements, or unclear PR direction                             | Stop/no-op; comment if human action is needed.                                                      |
+| Secrets, provider config, CI project settings, or external service failures outside the repo            | Stop/no-op; comment if human action is needed.                                                      |
+| Dependency replacement or vulnerability/security choices                                                | Stop/no-op; comment if human action is needed.                                                      |
+| Production data migrations, backfills, or data-shape decisions                                          | Stop/no-op; comment if human action is needed.                                                      |
+
+## Repository alignment (PlayLAdev)
+
+Current repository evidence (2026-06-02):
+
+- no checks were reported for PR #1 (`gh pr checks 1`)
+- no workflow files are present under `.github/workflows`
+
+Team-aligned default for this repository until checks are introduced:
+
+- keep auto-repair limited to formatting/lint/typecheck/test/workflow-syntax categories in the table above
+- treat flaky-rerun decisions, E2E ambiguity, dependency/security choices, and external provider failures as human-confirmation required unless evidence is unambiguous
+- no-op cleanly when no checks are configured or no failing check trigger exists
 
 ## Branch and concurrency safety
 

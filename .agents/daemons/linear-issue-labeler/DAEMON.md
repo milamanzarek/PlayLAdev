@@ -16,6 +16,13 @@ schedule: '0 */4 * * *'
 
 # Issue Label Hygiene Helper
 
+## Repository label policy (PlayLAdev defaults)
+
+- Taxonomy source: `references/label-taxonomy.md`
+- Labels this daemon may auto-add: `bug`, `enhancement`, `documentation`, `question`
+- Labels this daemon must not auto-add: `duplicate`, `invalid`, `wontfix`, `good first issue`, `help wanted`
+- Mutation mode: add-only automation; label removals are handled via repair proposals
+
 ## Label taxonomy
 
 Read `references/label-taxonomy.md` before deciding labels.
@@ -40,6 +47,7 @@ Add a missing label when:
 - exactly one label in that family is supported by issue evidence
 - the label is current, not deprecated
 - applying it does not conflict with existing labels
+- the label is in the repository auto-add allowlist above
 
 Post a repair proposal instead of mutating when:
 
@@ -47,6 +55,7 @@ Post a repair proposal instead of mutating when:
 - an issue has deprecated labels
 - existing labels conflict with the taxonomy
 - the issue body or title does not provide enough context
+- the correct label is outside the auto-add allowlist
 
 ## Repair proposal format
 
@@ -55,9 +64,9 @@ Use one concise issue comment:
 ```md
 Label repair needed
 
-Recommended labels: <labels>
-Reason: <short rationale>
-Blocked because: <specific uncertainty or conflict>
+Recommended labels: [comma-separated labels]
+Reason: [short rationale]
+Blocked because: [specific uncertainty or conflict]
 ```
 
 ## Limits

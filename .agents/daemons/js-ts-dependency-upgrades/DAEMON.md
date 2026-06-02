@@ -21,19 +21,26 @@ schedule: '0 8 * * 1'
 
 Use these repository-specific values:
 
-- Package manager: `<package-manager>`
-- Dependency manifests: `<manifest-globs>`
-- Lockfile: `<lockfile-path>`
-- Outdated scan: `<outdated-command>`
-- Runtime dependency update: `<runtime-update-command>`
-- Development dependency update: `<development-update-command>`
-- Install or lockfile refresh: `<install-command>`
+- Package manager: `not-configured (no JavaScript/TypeScript manifest currently present in repository)`
+- Dependency manifests: `none detected (no package.json files present)`
+- Lockfile: `none detected`
+- Outdated scan: `N/A until a manifest and lockfile are added`
+- Runtime dependency update: `N/A until a manifest and lockfile are added`
+- Development dependency update: `N/A until a manifest and lockfile are added`
+- Install or lockfile refresh: `N/A until a manifest and lockfile are added`
 - Verification:
-  - `<verification-command>`
-- Runtime dependency branch: `daemon/deps-runtime-minor-patch`
-- Development dependency branch: `daemon/deps-dev-minor-patch`
-- Runtime dependency title: `deps: update runtime dependencies`
-- Development dependency title: `deps(dev): update development dependencies`
+  - `N/A until a manifest and lockfile are added`
+- Runtime dependency branch: `charlie/deps-runtime-minor-patch`
+- Development dependency branch: `charlie/deps-dev-minor-patch`
+- Runtime dependency title: `chore(deps): update runtime dependencies`
+- Development dependency title: `chore(deps-dev): update development dependencies`
+- Labels: `none` (do not auto-apply labels until the team defines dependency label conventions)
+
+## Current applicability
+
+This daemon is intentionally configured to no-op until the repository contains JavaScript/TypeScript dependency manifests and a lockfile.
+
+When a Node/Bun workspace is added, replace the `N/A` command values above with concrete package-manager commands grounded in repository scripts and lockfile evidence.
 
 ## Update policy
 
@@ -86,6 +93,7 @@ If verification fails and the fix is not a small dependency-related adjustment, 
 
 ## No-op when
 
+- repository has no JavaScript/TypeScript manifests and lockfile
 - no patch or minor upgrades are available
 - any configuration placeholder remains unresolved
 - verification cannot be run safely
